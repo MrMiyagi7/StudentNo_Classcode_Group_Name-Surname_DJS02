@@ -8,11 +8,17 @@ form.addEventListener("submit", (event) => {
     const { dividend, divider } = Object.fromEntries(entries);
     const noDataErr =
       "Division not performed. Both values are required in inputs. Try again";
-    console.log(dividend);
-    console.log(divider);
+    const invalidNumberErr =
+      "Division not performed. Invalid number provided. Try again";
+
     if (dividend === "" || divider === "") throw noDataErr;
+    if (dividend == 0 || divider == 0) throw invalidNumberErr;
     result.innerText = Math.floor(dividend / divider);
   } catch (err) {
     result.innerHTML = err;
+    if (err === "Division not performed. Invalid number provided. Try again") {
+      console.error(err);
+      console.trace();
+    }
   }
 });
