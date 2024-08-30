@@ -11,12 +11,15 @@ form.addEventListener("submit", (event) => {
     const invalidNumberErr =
       "Division not performed. Invalid number provided. Try again";
     const criticalErr = "Something critical went wrong. Please reload the page";
+
+    // logical operators to throw errors based on error type
     if (isNaN(dividend) || isNaN(divider)) throw criticalErr;
     if (dividend === "" || divider === "") throw noDataErr;
     if (dividend == 0 || divider == 0) throw invalidNumberErr;
 
     result.innerText = Math.floor(dividend / divider);
   } catch (err) {
+    // logic that simulates an app crash due to critical error
     if (err === "Division not performed. Invalid number provided. Try again") {
       console.error(err);
       console.trace();
