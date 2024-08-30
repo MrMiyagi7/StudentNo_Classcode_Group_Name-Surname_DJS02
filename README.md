@@ -1,85 +1,54 @@
 # DJS02 Project Brief: Whole Number Divider
 
-This project focuses on enhancing a web-based Whole Number Divider application. It's designed to help students apply their knowledge of error handling, guided by specific user stories. Before proceeding, familiarise yourself with the Gherkin syntax, a crucial tool for understanding user stories and requirements. Refer to the provided reading materials for a comprehensive guide. Below is the HTML and JavaScript code for a “Whole Number Divider”. At the moment it only meets two user stories (see below under “Resolved Stories”). Please ensure that it meets all user stories listed below:
+## Project Overview
 
-This exercise provides user stories in [the Gherkin syntax](https://docs.behat.org/en/v2.5/guides/1.gherkin.html). Please make sure you understand the use and meaning of this syntax before continuing. Check out this resource from [Cucumber](https://cucumber.io/docs/gherkin/reference/).
+This project, Whole Number Division, focuses on implementing error handling in JavaScript. The primary goal is to demonstrate how to manage errors gracefully without causing the application to crash. Instead of letting critical errors disrupt the user experience, the project simulates an application crash and logs the error using a try-catch block.
 
-#### Project Overview
+## Features
 
-The existing codebase for the Whole Number Divider meets certain user stories but falls short on others. Your task is to modify and extend the code to address all specified user stories, ensuring a robust, user-friendly application.
+### Form Submission:
 
-![alt text](image.png)
+The form allows users to input a dividend and a divider to perform whole number division.
 
-#### Starter Code
+### Error Handling:
 
-The provided HTML and JavaScript setup a basic form for inputting two numbers (dividend and divider) and a button to perform the calculation. The current script captures form submissions and displays the division result. However, it lacks validation, error handling, and the logic to meet all user stories.
+The script checks for various types of errors during form submission, including missing data, invalid numbers, and critical issues.
 
-<h2 style="color:#e67e22">Resolved Stories</h2>
+## Error Handling Mechanism
 
-1. **Initial State**: On page load, the message “No calculation performed” is displayed, indicating no action has been taken yet.
-2. **Whole Number Division**: Upon submitting two numbers that divide evenly (e.g., 20 divided by 10), the application correctly displays the whole number result.
+The JavaScript file implements different types of errors and handles them in the following manner:
 
-### Scenario: Starting program state
+### 1. No Data Error:
 
-- GIVEN that the submit button has not been pressed yet
-- AND the code has just loaded
-- THEN “NO calculation performed” should be displayed at the bottom
+- Triggered when one or both inputs are empty.
+- Displays the message: "Division not performed. Both values are required in inputs. Try again".
 
-### Scenario: Dividing numbers result in a whole number
+### 2. Invalid Number Error:
 
-- GIVEN that the submit button is pressed
-- WHEN 20 is entered into the first input
-- AND 10 is entered into the second input
-- THEN 2 should be displayed at the bottom
- 
-<h2 style="color:#e67e22">Unresolved Stories</h2> 
+- Triggered when the dividend or divider is 0.
+- Displays the message: "Division not performed. Invalid number provided. Try again".
+- The error is logged to the console using console.error(err), and a stack trace is provided with console.trace().
 
-### Scenario: Dividing numbers result in a decimal number
+### 3. Critical Error:
 
-- GIVEN that the submit button is pressed
-- WHEN 20 is entered into the first input
-- AND 3 is entered into the second input
-- THEN the number 6 with no decimal should be shown
- 
+- Triggered when non-numeric data is provided in the inputs.
+- Displays a critical error message and an associated image to simulate an app crash.
+- The body content of the page is replaced with an error message to simulate the crash.
 
-### Scenario: Validation when values are missing
+## Project Structure
 
-- GIVEN that the submit button is pressed
-- WHEN either or both inputs are empty
-- THEN the divisions should not be done
-- AND the following should be displayed: “Division not performed. Both values are required in inputs. Try again”.
- 
+- HTML: The index.html file sets up a simple form to input numbers for division and a div to display results or error messages.
+- JavaScript: The scripts.js file contains the logic for handling form submission, performing division, and managing errors using try-catch blocks.
+- CSS: The styles.css file is linked to style the HTML elements, error messages, and the critical error simulation.
 
-### Scenario: An invalid division should log an error in the console
+## How It Works
 
-- GIVEN that the submit button is pressed
-- WHEN 20 is entered into the first input
-- AND 0 is entered into the second input
-- THEN the division should not be done
-- AND the following should be displayed: “Division not performed. Invalid number provided. Try again”.
-- AND an error should be logged in the browser console that shows the call stack
-- BUT the program should not crash entirely
- 
+1. Users enter the dividend and divider in the form.
+2. Upon submission, the JavaScript script checks for errors:
+   - If no errors are found, it calculates the result and displays it.
+   - If an error is detected, it logs the error, displays the appropriate message, and simulates a crash if the error is critical.
+3. The application demonstrates how to handle different errors without abruptly stopping the script, ensuring a smooth user experience.
 
-### Scenario: Providing anything that is not a number should crash the program
+## Conclusion
 
-- GIVEN that the submit button is pressed
-- WHEN ‘YOLO’ is entered into the first input
-- AND ‘+++’ is entered into the second input
-- THEN the entire screen should be replaced with “Something critical went wrong. Please reload the page
-- AND an error should be logged in the browser console that shows the call stack.
-
-#### Task Instructions
-
-1. **Review the Starter Code**: Understand the current implementation and its limitations.
-2. **Implement User Stories**: Modify the code to fulfill all unresolved user stories. Pay attention to error handling and user input validation.
-3. **Error Handling**: Ensure the application handles errors gracefully, providing clear feedback to the user without crashing.
-4. **Testing**: Test your application thoroughly with various inputs to ensure it meets all the user stories.
-
-#### Submission Requirements
-
-- Updated HTML and JavaScript files.
-- Submit your project to the LMS Project Tab for DJS02
-
-This project challenges you to think critically about user input, error handling, and providing a seamless user experience. Ensure your solution is robust, user-friendly, and meets the specified requirements.
-
+This project showcases effective error handling in JavaScript by simulating and managing different error scenarios. It provides a practical example of using try-catch blocks to ensure that applications can gracefully handle unexpected inputs or situations.
